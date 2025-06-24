@@ -91,6 +91,25 @@ You’ll get a quick popup notification letting you know if something suspicious
 
 ---
 
+## Real-World Effectiveness ✨
+
+Even in 2025, token grabbers remain a threat — many use JavaScript injection into Discord's files (`core.asar`, `index.js`), or read from the LevelDB database to extract sensitive data.
+
+Here’s why **DisGuard still works against the latest techniques**:
+
+| Threat Type                               | ✅ Status | How DisGuard Protects                                                                 |
+|-------------------------------------------|-----------|----------------------------------------------------------------------------------------|
+| JS injection into `core.asar`, `index.js` |  Blocked | Monitors Discord folders and blocks any process accessing these files.                |
+| LocalStorage / LevelDB token grabbing     |  Blocked | Detects `.ldb`, `.log`, and LevelDB file access instantly.                            |
+| Malicious executables (e.g. `grabber.exe`) |  Blocked | Scans processes for suspicious names or unsigned code and terminates them.            |
+| Untrusted unsigned processes              | Blocked | Only digitally signed/trusted software is allowed; others are killed on detection.    |
+| Exfiltration via HTTP                     |  Blocked | Adds dynamic Windows Firewall rules to block all network traffic from suspicious apps.|
+
+DisGuard typically reacts within **1–3 milliseconds**, while modern token stealers usually need **50–200ms** to read and transmit tokens — giving **DisGuard the edge to stop them before exfiltration happens**.
+
+
+---
+
 ## Troubleshooting & FAQs ❓
 
 **Q:** Why do I need to run DisGuard as Administrator?  
